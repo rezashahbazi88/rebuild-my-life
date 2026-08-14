@@ -3,117 +3,359 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>A Chance to Rebuild</title>
+
+  <title>A Chance to Rebuild My Life</title>
+  <meta name="description" content="A personal fundraising campaign by an Iranian real-estate professional rebuilding his life through honest work.">
 
   <style>
     * {
       box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --navy: #0f2742;
+      --blue: #1d4ed8;
+      --green: #15803d;
+      --light: #f6f8fb;
+      --text: #182230;
+      --muted: #667085;
+      --border: #e4e7ec;
+      --white: #ffffff;
+    }
+
+    html {
+      scroll-behavior: smooth;
     }
 
     body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f5f7fa;
-      color: #20252b;
-      line-height: 1.7;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--light);
+      color: var(--text);
+      line-height: 1.75;
     }
 
-    .container {
-      max-width: 760px;
-      margin: auto;
-      padding: 24px;
+    a {
+      color: inherit;
     }
 
     .hero {
-      background: white;
-      padding: 40px 28px;
-      border-radius: 18px;
-      margin-top: 30px;
-      box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+      background:
+        linear-gradient(135deg, rgba(15,39,66,.98), rgba(29,78,216,.92));
+      color: white;
+      padding: 72px 20px 95px;
+      text-align: center;
+    }
+
+    .hero-inner {
+      max-width: 900px;
+      margin: auto;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 8px 16px;
+      border: 1px solid rgba(255,255,255,.25);
+      background: rgba(255,255,255,.10);
+      border-radius: 999px;
+      font-size: 13px;
+      margin-bottom: 22px;
     }
 
     h1 {
-      font-size: 34px;
-      line-height: 1.2;
-      margin-top: 0;
-    }
-
-    h2 {
-      margin-top: 35px;
+      font-size: clamp(38px, 7vw, 66px);
+      line-height: 1.08;
+      letter-spacing: -1.5px;
+      margin-bottom: 22px;
     }
 
     .subtitle {
-      font-size: 19px;
-      color: #59636e;
+      max-width: 760px;
+      margin: auto;
+      font-size: 20px;
+      color: rgba(255,255,255,.92);
+    }
+
+    .container {
+      width: min(920px, calc(100% - 30px));
+      margin: auto;
+    }
+
+    .goal-card {
+      background: var(--white);
+      margin-top: -45px;
+      position: relative;
+      border-radius: 22px;
+      padding: 34px;
+      box-shadow: 0 18px 50px rgba(15,39,66,.13);
+      text-align: center;
+    }
+
+    .goal-label {
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
     }
 
     .goal {
-      background: #eef7f1;
-      padding: 20px;
-      border-radius: 14px;
-      margin: 25px 0;
-      text-align: center;
+      font-size: clamp(48px, 9vw, 72px);
+      line-height: 1.1;
+      font-weight: 800;
+      color: var(--navy);
+      margin: 7px 0;
     }
 
-    .goal strong {
+    .goal-text {
+      color: var(--muted);
+      max-width: 650px;
+      margin: auto auto 24px;
+    }
+
+    .progress {
+      height: 13px;
+      background: #e9edf2;
+      border-radius: 999px;
+      overflow: hidden;
+      margin-bottom: 9px;
+    }
+
+    .progress-bar {
+      width: 0%;
+      height: 100%;
+      background: var(--green);
+    }
+
+    .progress-note {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 23px;
+    }
+
+    .main-button {
+      display: inline-block;
+      background: var(--green);
+      color: white;
+      text-decoration: none;
+      padding: 14px 28px;
+      border-radius: 11px;
+      font-weight: 800;
+      box-shadow: 0 8px 20px rgba(21,128,61,.22);
+      transition: .2s;
+    }
+
+    .main-button:hover {
+      transform: translateY(-2px);
+    }
+
+    main {
+      padding: 45px 0 75px;
+    }
+
+    section {
+      background: var(--white);
+      border-radius: 18px;
+      padding: 36px;
+      margin-bottom: 25px;
+      box-shadow: 0 5px 22px rgba(15,39,66,.05);
+    }
+
+    h2 {
+      color: var(--navy);
+      font-size: 29px;
+      line-height: 1.25;
+      margin-bottom: 18px;
+    }
+
+    h3 {
+      color: var(--navy);
+      margin-bottom: 8px;
+    }
+
+    p {
+      margin-bottom: 17px;
+    }
+
+    .opening {
+      font-size: 21px;
+      font-weight: 600;
+      color: #344054;
+    }
+
+    .highlight {
+      border-left: 5px solid var(--green);
+      background: #f0fdf4;
+      padding: 21px;
+      border-radius: 8px;
+      margin: 25px 0;
+      font-size: 19px;
+      font-weight: 700;
+      color: #14532d;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+      gap: 15px;
+      margin-top: 23px;
+    }
+
+    .card {
+      border: 1px solid var(--border);
+      border-radius: 13px;
+      padding: 20px;
+      background: #fbfcfd;
+    }
+
+    .card strong {
       display: block;
-      font-size: 30px;
+      color: var(--navy);
       margin-bottom: 5px;
     }
 
-    .donations {
+    .amounts {
       display: flex;
-      gap: 10px;
       flex-wrap: wrap;
-      margin: 20px 0;
+      gap: 10px;
+      margin: 22px 0;
     }
 
     .amount {
-      background: #ffffff;
-      border: 1px solid #d7dde3;
-      border-radius: 10px;
-      padding: 10px 18px;
-      font-weight: bold;
+      background: #eff6ff;
+      border: 1px solid #dbeafe;
+      color: #1e3a8a;
+      padding: 9px 17px;
+      border-radius: 999px;
+      font-weight: 800;
     }
 
-    .quote {
-      border-left: 4px solid #555;
-      padding-left: 18px;
-      font-size: 20px;
-      font-style: italic;
-      margin: 30px 0;
+    .donate-section {
+      border: 2px solid #dbeafe;
     }
 
-    .crypto {
-      background: #fff8e8;
-      padding: 22px;
-      border-radius: 14px;
-      margin-top: 30px;
+    .crypto-box {
+      margin-top: 22px;
+      padding: 27px;
+      border-radius: 16px;
+      background: #101828;
+      color: white;
+    }
+
+    .crypto-title {
+      color: white;
+      margin-bottom: 4px;
+    }
+
+    .crypto-subtitle {
+      color: #98a2b3;
+      font-size: 14px;
     }
 
     .wallet {
-      background: white;
-      padding: 14px;
-      border-radius: 8px;
+      margin-top: 18px;
+      background: #1d2939;
+      border: 1px dashed #667085;
+      padding: 17px;
+      border-radius: 10px;
+      color: #d0d5dd;
       word-break: break-all;
       font-family: monospace;
-      margin-top: 10px;
+      font-size: 14px;
+    }
+
+    .copy-button {
+      margin-top: 11px;
+      border: 0;
+      background: #ffffff;
+      color: #101828;
+      padding: 11px 18px;
+      border-radius: 9px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .copy-button:hover {
+      opacity: .9;
+    }
+
+    .qr-placeholder {
+      margin: 20px auto 0;
+      width: 170px;
+      height: 170px;
+      border: 2px dashed #667085;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #98a2b3;
+      font-size: 13px;
+    }
+
+    .warning {
+      margin-top: 17px;
+      color: #fdb022;
+      font-size: 14px;
+    }
+
+    .coming {
+      text-align: center;
+      color: #98a2b3;
+      padding: 10px;
+    }
+
+    .share {
+      background: #eff6ff;
+      text-align: center;
+    }
+
+    .share-buttons {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .share-button {
+      display: inline-block;
+      text-decoration: none;
+      padding: 11px 18px;
+      border-radius: 9px;
+      background: white;
+      border: 1px solid #dbeafe;
+      color: #1e3a8a;
+      font-weight: 700;
+    }
+
+    .transparency {
+      background: #fafafa;
     }
 
     footer {
+      padding: 30px 20px 55px;
       text-align: center;
-      color: #737b84;
-      font-size: 14px;
-      padding: 30px 0;
+      color: var(--muted);
+      font-size: 13px;
     }
 
     @media (max-width: 600px) {
-      h1 {
-        font-size: 28px;
+      .hero {
+        padding: 52px 18px 80px;
       }
 
-      .hero {
-        padding: 28px 20px;
+      section {
+        padding: 26px 20px;
+      }
+
+      .goal-card {
+        padding: 27px 18px;
+      }
+
+      h2 {
+        font-size: 25px;
       }
     }
   </style>
@@ -121,162 +363,340 @@
 
 <body>
 
-  <main class="container">
+<header class="hero">
+  <div class="hero-inner">
 
-    <section class="hero">
+    <div class="badge">Personal Recovery Campaign • Iran</div>
 
-      <h1>I’m Asking for a Chance to Rebuild My Life</h1>
+    <h1>I’m Asking for a Chance to Rebuild My Life</h1>
 
-      <p class="subtitle">
-        A real estate professional from Iran trying to recover from a devastating
-        financial crisis and rebuild through honest work.
-      </p>
+    <p class="subtitle">
+      An Iranian real-estate professional trying to recover from a devastating
+      financial crisis and rebuild his life through honest work.
+    </p>
 
-      <div class="goal">
-        <strong>$10,000</strong>
-        Initial emergency goal
+  </div>
+</header>
+
+<div class="container">
+
+  <div class="goal-card">
+
+    <div class="goal-label">Initial Emergency Goal</div>
+
+    <div class="goal">$10,000</div>
+
+    <p class="goal-text">
+      Help me deal with my most urgent obligations, regain stability,
+      and restart my ability to work and earn an independent income.
+    </p>
+
+    <div class="progress">
+      <div class="progress-bar"></div>
+    </div>
+
+    <div class="progress-note">
+      Current verified donations: $0
+    </div>
+
+    <a class="main-button" href="#donate">
+      Support My Recovery
+    </a>
+
+  </div>
+
+</div>
+
+<main class="container">
+
+  <section>
+
+    <h2>My Story</h2>
+
+    <p class="opening">
+      My name is <strong>[Your Name]</strong>. I am a real-estate professional
+      and small-business owner from Iran.
+    </p>
+
+    <p>
+      For years, I worked independently, ran my own real-estate office,
+      supported my family, and built my life through my own work.
+      I never imagined that one day I would have to publicly ask strangers
+      for financial help.
+    </p>
+
+    <p>
+      But today, I am facing the most difficult period of my life.
+    </p>
+
+    <div class="highlight">
+      I am not asking anyone to build my future for me.
+      I am asking for a chance to build it again myself.
+    </div>
+
+  </section>
+
+
+  <section>
+
+    <h2>How I Got Here</h2>
+
+    <p>
+      The war and severe economic crisis in Iran had a devastating impact
+      on my work and income. Economic instability, sanctions, inflation,
+      uncertainty, and the disruption of normal business activity have made
+      it extremely difficult for many people to maintain their livelihoods.
+    </p>
+
+    <p>
+      My real-estate business eventually became almost impossible to operate,
+      and I had to close my office.
+    </p>
+
+    <p>
+      At the same time, I already had significant financial obligations from
+      building my family life. I had been working and paying them down,
+      but when my income disappeared, everything began to fall apart.
+    </p>
+
+    <p>
+      In an attempt to protect what little financial security I had left,
+      I made another difficult financial decision and invested most of my
+      remaining savings in Bitcoin. The market subsequently fell, and I lost
+      a significant portion of what remained.
+    </p>
+
+    <p>
+      What made the situation even worse was that the period immediately
+      following this financial loss coincided with the escalation of war
+      and economic pressure in Iran.
+    </p>
+
+    <p>
+      Since then, the continuing effects of war, sanctions, inflation,
+      and economic instability have pushed my financial situation far
+      beyond what I could manage alone.
+    </p>
+
+    <p>
+      I have accumulated serious financial obligations, and some of them
+      have now resulted in legal problems, including enforcement action
+      related to unpaid bank obligations.
+    </p>
+
+    <p>
+      The financial pressure has also deeply affected my personal life
+      and marriage. My wife and I are currently living separately,
+      and I am trying to stabilize my life before the consequences
+      become even more serious.
+    </p>
+
+  </section>
+
+
+  <section>
+
+    <h2>What Your Support Would Help Me Do</h2>
+
+    <div class="cards">
+
+      <div class="card">
+        <strong>Urgent obligations</strong>
+        Address the most immediate financial pressures.
       </div>
 
-      <p>
-        My name is [YOUR NAME]. I’m a real estate professional and small
-        business owner from Iran.
-      </p>
-
-      <p>
-        For years, I worked independently, ran my own real estate office,
-        supported my family, and built my life through my own work.
-        I never imagined that one day I would have to publicly ask strangers
-        for financial help.
-      </p>
-
-      <p>
-        But today, I am facing the most difficult period of my life.
-      </p>
-
-      <p>
-        The war and the severe economic crisis in Iran had a devastating
-        impact on my work and income. My business almost completely stopped,
-        and eventually I had to close my office.
-      </p>
-
-      <p>
-        At the same time, I was already carrying significant debt from
-        building my family life. I had been working and paying those debts
-        back, but when my income disappeared, everything started falling apart.
-      </p>
-
-      <p>
-        In an attempt to protect what little financial security I had left,
-        I made another difficult financial decision and invested most of my
-        remaining savings in Bitcoin. The market subsequently fell, and I
-        lost a significant part of what I had left.
-      </p>
-
-      <p>
-        Since then, I have been trying desperately to recover.
-      </p>
-
-      <p>
-        For months, I have worked on real estate deals, often taking them
-        almost to completion, only to see them collapse at the last moment.
-        My income has effectively reached zero while my debts and financial
-        obligations have continued to grow.
-      </p>
-
-      <p>
-        Some of those obligations have now become serious legal problems.
-      </p>
-
-      <p>
-        The financial pressure has also severely affected my personal life
-        and my marriage.
-      </p>
-
-      <div class="quote">
-        I am not asking you to support me forever.
-        I am asking for a chance to get through this crisis and rebuild.
+      <div class="card">
+        <strong>Restart my work</strong>
+        Regain the ability to operate and generate income.
       </div>
 
-      <h2>What I’m Trying to Do</h2>
-
-      <p>
-        My initial goal is $10,000.
-      </p>
-
-      <p>
-        The money will help me deal with the most urgent financial
-        obligations, create some breathing room, and restart my ability
-        to work and generate a stable income again.
-      </p>
-
-      <p>
-        I still have my profession, my experience, and the determination
-        to work again.
-      </p>
-
-      <p>
-        I don't want someone else to build my future for me.
-        I want the opportunity to build it myself again.
-      </p>
-
-      <h2>Every Small Contribution Matters</h2>
-
-      <div class="donations">
-        <div class="amount">$5</div>
-        <div class="amount">$10</div>
-        <div class="amount">$20</div>
-        <div class="amount">$50</div>
-        <div class="amount">$100</div>
+      <div class="card">
+        <strong>Rebuild stability</strong>
+        Create breathing room to move forward responsibly.
       </div>
 
-      <p>
-        You don't need to give a large amount.
-        If many people contribute a small amount, together those contributions
-        can make a life-changing difference.
-      </p>
-
-      <p>
-        If you cannot donate, sharing this page with someone who might be able
-        to help is also a meaningful contribution.
-      </p>
-
-      <div class="crypto">
-
-        <h2>Crypto Donations</h2>
-
-        <p>
-          If you would like to support me with cryptocurrency, donations can
-          be made using the information below.
-        </p>
-
-        <strong>USDT — TRON (TRC20)</strong>
-
-        <div class="wallet">
-          WALLET ADDRESS WILL BE ADDED AFTER FINAL REVIEW
-        </div>
-
-        <p>
-          Please make sure the correct network is selected before sending.
-        </p>
-
+      <div class="card">
+        <strong>Return to independence</strong>
+        Rebuild a sustainable source of personal income.
       </div>
 
-      <div class="quote">
-        I’m not asking someone to build my future for me.
-        I’m asking for a chance to build it myself again.
-      </div>
+    </div>
 
-      <p>
-        Thank you for taking the time to read my story.
+    <p style="margin-top:25px;">
+      I still have my profession, my experience, and my determination to work.
+    </p>
+
+  </section>
+
+
+  <section>
+
+    <h2>Every Small Contribution Matters</h2>
+
+    <p>
+      You don't need to give a large amount. Even a small contribution can help.
+    </p>
+
+    <div class="amounts">
+      <div class="amount">$5</div>
+      <div class="amount">$10</div>
+      <div class="amount">$20</div>
+      <div class="amount">$50</div>
+      <div class="amount">$100</div>
+    </div>
+
+    <p>
+      If enough people contribute a small amount, those contributions
+      can make a meaningful difference.
+    </p>
+
+    <p>
+      If you cannot donate, sharing this page with someone who may be able
+      to help is also meaningful support.
+    </p>
+
+  </section>
+
+
+  <section id="donate" class="donate-section">
+
+    <h2>Support My Recovery</h2>
+
+    <p>
+      For now, cryptocurrency is the available direct donation method.
+      A simple card-based donation option may be added later if a lawful
+      and verifiable payment route becomes available.
+    </p>
+
+    <div class="crypto-box">
+
+      <h3 class="crypto-title">USDT — TRON (TRC20)</h3>
+
+      <p class="crypto-subtitle">
+        Direct crypto donation
       </p>
 
-    </section>
+      <div class="wallet" id="walletAddress">
+        WALLET ADDRESS — COMING SOON
+      </div>
 
-    <footer>
-      This page is a personal fundraising appeal.
-    </footer>
+      <button class="copy-button" onclick="copyWallet()" disabled>
+        Copy Wallet Address
+      </button>
 
-  </main>
+      <div class="qr-placeholder">
+        QR CODE<br>
+        COMING SOON
+      </div>
+
+      <div class="warning">
+        ⚠ Always verify the network before sending USDT.
+        Send only USDT using the TRON (TRC20) network to the verified address
+        published on this page.
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <section class="transparency">
+
+    <h2>Transparency</h2>
+
+    <p>
+      This is a personal fundraising campaign created to help me recover
+      from a severe financial crisis and rebuild my life through work.
+    </p>
+
+    <p>
+      I intend to share meaningful updates as the campaign progresses,
+      including progress toward rebuilding my professional activity.
+    </p>
+
+    <p>
+      I am not asking for permanent support. My goal is to regain financial
+      independence and return to earning my own income.
+    </p>
+
+  </section>
+
+
+  <section class="share">
+
+    <h2>Can't Donate?</h2>
+
+    <p>
+      Sharing this page may be just as valuable.
+    </p>
+
+    <p>
+      <strong>
+        One share could connect this story with someone who can help.
+      </strong>
+    </p>
+
+    <div class="share-buttons">
+
+      <a class="share-button"
+         href="https://twitter.com/intent/tweet?text=I%27m%20trying%20to%20rebuild%20my%20life%20after%20a%20severe%20financial%20crisis%20in%20Iran.%20If%20you%20can%20help%20or%20share%2C%20please%20visit%3A%20https%3A%2F%2Frezashahbazi88.github.io%2Frebuild-my-life%2F"
+         target="_blank">
+        Share on X
+      </a>
+
+      <a class="share-button"
+         href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Frezashahbazi88.github.io%2Frebuild-my-life%2F"
+         target="_blank">
+        Share on Facebook
+      </a>
+
+    </div>
+
+  </section>
+
+
+  <section>
+
+    <h2>Thank You</h2>
+
+    <p>
+      Thank you for taking the time to read my story.
+    </p>
+
+    <p>
+      I don't want someone else to build my future for me.
+    </p>
+
+    <p>
+      <strong>I want a chance to build it again myself.</strong>
+    </p>
+
+  </section>
+
+</main>
+
+<footer>
+  This page is a personal fundraising campaign.
+  All information presented here is intended to describe my personal financial
+  situation and recovery effort honestly.
+</footer>
+
+<script>
+  const walletAddress = "";
+
+  function copyWallet() {
+    if (!walletAddress) return;
+
+    navigator.clipboard.writeText(walletAddress).then(() => {
+      const button = document.querySelector(".copy-button");
+      button.textContent = "Copied ✓";
+
+      setTimeout(() => {
+        button.textContent = "Copy Wallet Address";
+      }, 1800);
+    });
+  }
+</script>
 
 </body>
 </html>
