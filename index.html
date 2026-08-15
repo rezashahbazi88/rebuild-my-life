@@ -584,9 +584,14 @@
         Copy Wallet Address
       </button>
 
-      <div class="qr-placeholder">
-        QR CODE<br>
-        COMING SOON
+      <div style="text-align:center; margin-top:20px;">
+  <div id="qrCode"
+       style="display:inline-block; background:white; padding:14px; border-radius:12px;">
+  </div>
+
+  <p style="color:#98a2b3; font-size:13px; margin-top:10px;">
+    Scan to copy the donation address
+  </p>
       </div>
 
       <div class="warning">
@@ -680,10 +685,18 @@
   All information presented here is intended to describe my personal financial
   situation and recovery effort honestly.
 </footer>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"
+        integrity="sha512-CNgIRecGo7nphbeZ04Sc13ka07paqdeTu0WR1IM4kNcpmBAUSHSQX0FslNhTDadL4O5SAGapGt4FodqL8My0mA=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer"></script>
 <script>
   const walletAddress = "TCoHKAnQv7sCQUv5JyBSWZ9eKneTouBx2Q";
-
+new QRCode(document.getElementById("qrCode"), {
+  text: walletAddress,
+  width: 180,
+  height: 180,
+  correctLevel: QRCode.CorrectLevel.M
+});
   function copyWallet() {
     if (!walletAddress) return;
 
